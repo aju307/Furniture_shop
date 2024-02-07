@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card-body">
+                  <h4 class="card-title">Shop Table</h4>
+                  <p class="card-description">
+                    Add class <code>.table-striped</code>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Catogory_name
+                          </th>
+                          <th>
+                            Description
+                          </th>
+                          <th>
+                            Image
+                          </th>
+                            <th>
+                                Options
+                            </th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in data %}
+                        <tr>
+                          <td class="py-1">
+                              {{i.Catogory_name}}
+
+                          </td>
+                          <td>
+                              {{i.Description}}
+
+                          </td>
+                          <td>
+                              <img src="{{i.Image.url}}" width="100px" height="100px">
+
+                          </td>
+                              <form action="{% url 'editecatogory' dataid=i.id %}">
+                                  <td>
+                                      <button type="submit" class="btn btn-success mr-2">Edit</button>
+                                  </td>
+                            </form>
+
+                                <form action="{% url 'deletecatogory' dataid=i.id %}">
+                                  <td>
+                                      <button type="submit" class="btn btn-danger mr-2">Delete</button>
+                                  </td>
+                                </form>
+
+
+                        </tr>
+                      {% endfor %}
+
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+</body>
+</html>
+{% endblock %}
